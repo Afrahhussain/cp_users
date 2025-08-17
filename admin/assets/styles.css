@@ -22,9 +22,13 @@ a{color:inherit;text-decoration:none}
 
 /* LAYOUT: Sidebar + Main */
 .sidebar{
-  position:fixed;top:64px;left:0;width:260px;height:calc(100vh - 64px);background:linear-gradient(180deg,#0b2540 0%,#0b5566 100%);color:#fff;padding:16px 10px;transition:transform .22s ease, width .22s ease;z-index:900;overflow:auto;
+  position:fixed;top:64px;left:0;width:260px;height:calc(100vh - 64px);
+  background:linear-gradient(180deg,#0b2540 0%,#0b5566 100%);
+  color:#fff;padding:16px 10px;transition:transform .22s ease;z-index:900;overflow:auto;
+  transform:translateX(-100%); /* hidden by default */
 }
-.sidebar.collapsed{width:72px}
+.sidebar.open{transform:translateX(0);} /* open when toggled */
+
 .sidebar .sb-brand{display:flex;align-items:center;gap:12px;padding:10px 12px;margin-bottom:8px}
 .sb-logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#2563EB,#14B8A6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
 .sb-text{font-weight:700;color:rgba(255,255,255,0.95)}
@@ -33,18 +37,14 @@ a{color:inherit;text-decoration:none}
 .sb-link i{width:20px;text-align:center}
 .sb-link:hover{background:rgba(255,255,255,0.06)}
 
-/* hide labels when collapsed */
-.sidebar.collapsed .lbl{display:none}
-
 /* overlay for mobile */
 .overlay{display:none;position:fixed;inset:64px 0 0 0;background:rgba(0,0,0,0.35);z-index:850}
 
 /* main content area */
 .main{
-  margin-left:260px;margin-top:84px;padding:22px;transition:margin-left .22s ease;
+  margin-top:84px;padding:22px;transition:margin-left .22s ease;
   min-height:calc(100vh - 84px);background:#f6f8fa;
 }
-.sidebar.collapsed ~ .main{margin-left:72px}
 
 /* STAT CARDS */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
@@ -62,23 +62,4 @@ a{color:inherit;text-decoration:none}
 /* TABLES */
 .table{width:100%;border-collapse:collapse;margin-top:14px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 24px rgba(12,18,26,0.04)}
 .table th, .table td{padding:12px;border-bottom:1px solid #f1f5f9;text-align:left}
-.table th{background:#f8fafc;font-weight:700;color:#0f172a}
-
-/* FORMS */
-.field{display:flex;flex-direction:column;margin-bottom:10px}
-.input, select, textarea{padding:10px;border-radius:8px;border:1px solid #e6eef6;background:#fff}
-.form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-
-/* small text */
-.small{font-size:13px;color:#64748b}
-
-/* footer */
-.footer{margin-top:24px;padding:12px;text-align:center;color:#64748b;font-size:13px}
-
-/* RESPONSIVE - mobile */
-@media (max-width: 900px){
-  .sidebar{transform:translateX(-100%);position:fixed}
-  .sidebar.open{transform:translateX(0)}
-  .overlay{display:block}
-  .main{margin-left:0;padding:16px;margin-top:72px}
-}
+.table th{background:#f8fafc;font-weight:700;
